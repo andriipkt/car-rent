@@ -8,9 +8,16 @@ export const FavIconWrapper = styled.span`
   width: 18px;
   height: 18px;
 
+  & svg path {
+    fill: transparent;
+    stroke: white;
+
+    transition: fill var(--transition), stroke var(--transition);
+  }
+
   &:hover svg path {
-    fill: red; /* Change to your desired color */
-    stroke: yellow;
+    fill: var(--main-color);
+    stroke: var(--main-color);
   }
 `;
 

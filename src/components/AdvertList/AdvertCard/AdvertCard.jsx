@@ -7,22 +7,22 @@ import {
   Picture,
   PictureWrapper,
   FavIconWrapper,
-} from "./AdvertCard.styled";
+} from './AdvertCard.styled';
 
-import { FavoriteIcon } from "../Icons/Icons";
-// import logo from "../../assets/car-logo.svg";
+import { FavoriteIcon } from '../../Icons/Icons';
 
-const AdvertCard = () => {
+const AdvertCard = ({ advert }) => {
+  console.log(advert);
   const id = 9812;
 
   const arr = [
-    "address (kiev)",
-    "Ukraine",
-    "rentalCompany",
-    "type (SUV)",
-    "model",
-    "id",
-    "functionalities (1st)",
+    'address (kiev)',
+    'Ukraine',
+    'rentalCompany',
+    'type (SUV)',
+    'model',
+    'id',
+    'functionalities (1st)',
   ];
 
   return (
@@ -30,11 +30,11 @@ const AdvertCard = () => {
       <PictureWrapper>
         <Picture
           $imgsrc={
-            "https://ftp.goit.study/img/cars-test-task/buick_enclave.jpeg"
+            'https://ftp.goit.study/img/cars-test-task/buick_enclave.jpeg'
           }
         />
         <FavIconWrapper>
-          <FavoriteIcon color={"blue"} />
+          <FavoriteIcon color={'blue'} />
         </FavIconWrapper>
       </PictureWrapper>
 
@@ -47,7 +47,7 @@ const AdvertCard = () => {
       </CardTitleWrapper>
 
       <CardInfoWrapper>
-        {arr.map((el) => {
+        {arr.map(el => {
           return (
             <InfoEl key={`${id}.${el}`}>
               <p>{el}</p>
