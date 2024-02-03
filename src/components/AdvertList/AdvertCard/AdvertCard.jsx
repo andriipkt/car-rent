@@ -2,61 +2,86 @@ import {
   Button,
   CardTitleWrapper,
   CardWrapper,
-  InfoEl,
-  CardInfoWrapper,
   Picture,
   PictureWrapper,
   FavIconWrapper,
+  CardInfo,
+  CardInfoWrapper,
 } from './AdvertCard.styled';
-
 import { FavoriteIcon } from '../../Icons/Icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, deleteFavorite } from '../../../redux/favorites/slice';
+import { selectFavorites } from '../../../redux/favorites/selectors';
 
-const AdvertCard = ({ advert }) => {
-  console.log(advert);
-  const id = 9812;
+const AdvertCard = ({ advertItem }) => {
+  const {
+    make,
+    model,
+    year,
+    rentalPrice,
+    address,
+    rentalCompany,
+    type,
+    id,
+    functionalities,
+    img,
+    description,
+  } = advertItem;
+  const dispatch = useDispatch();
+  const { favorites } = useSelector(selectFavorites);
 
-  const arr = [
-    'address (kiev)',
-    'Ukraine',
-    'rentalCompany',
-    'type (SUV)',
-    'model',
-    'id',
-    'functionalities (1st)',
+  const addressInfo = address.split(' ').map(word => word.replace(',', ''));
+  const city = addressInfo.slice(-2)[0];
+  const country = addressInfo.slice(-2)[1];
+
+  const tags = [
+    city,
+    country,
+    rentalCompany,
+    type,
+    model,
+    id,
+    functionalities[0],
   ];
+
+  const isFavorite = favorites.some(fav => fav.id === id);
+
+  const handleOnAddFavorite = advert => {
+    if (!isFavorite) {
+      dispatch(addFavorite(advert));
+    } else {
+      dispatch(deleteFavorite(advert.id));
+    }
+  };
 
   return (
     <CardWrapper>
       <PictureWrapper>
-        <Picture
-          $imgsrc={
-            'https://ftp.goit.study/img/cars-test-task/buick_enclave.jpeg'
-          }
-        />
-        <FavIconWrapper>
-          <FavoriteIcon color={'blue'} />
+        <Picture src={img} loading="lazy" alt={description} />
+        <FavIconWrapper onClick={() => handleOnAddFavorite(advertItem)}>
+          <FavoriteIcon color={isFavorite ? '#3470ff' : 'transparent'} />
         </FavIconWrapper>
       </PictureWrapper>
 
       <CardTitleWrapper>
         <h2>
-          make(Buick) <span>model(Enclave)</span>, year(2008)
+          {make} <span>{model}</span>, {year}
         </h2>
 
-        <p>rentalPrice ($40)</p>
+        <p>{rentalPrice}</p>
       </CardTitleWrapper>
 
       <CardInfoWrapper>
-        {arr.map(el => {
-          return (
-            <InfoEl key={`${id}.${el}`}>
-              <p>{el}</p>
-            </InfoEl>
-          );
-        })}
-      </CardInfoWrapper>
+        <CardInfo>
+          {/* {tags.map(el => {
+          return <InfoEl key={`${el}.${id}`}>{el}</InfoEl>;
+        })} */}
+          {/* {tags.map(tag => tag.join('U+02758'))} */}
+          {tags.join(' | ')}
+        </CardInfo>
 
-      <Button>Learn more</Button>
+        <Button>Learn more</Button>
+      </CardInfoWrapper>
     </CardWrapper>
   );
 };

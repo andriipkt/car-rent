@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   FLUSH,
@@ -7,18 +7,21 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import { advertsReducer } from "./adverts/slice";
-import storage from "redux-persist/lib/storage";
-import persistReducer from "redux-persist/es/persistReducer";
+} from 'redux-persist';
+import { advertsReducer } from './adverts/slice';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from 'redux-persist/es/persistReducer';
+import { favoritesReducer } from './favorites/slice';
 
 const persistConfig = {
-  key: "root",
+  key: 'favorites',
   storage,
 };
 
 const combinedReducers = combineReducers({
-  adverts: persistReducer(persistConfig, advertsReducer),
+  // adverts: persistReducer(persistConfig, advertsReducer),
+  adverts: advertsReducer,
+  favorites: persistReducer(persistConfig, favoritesReducer),
 });
 
 export const store = configureStore({
@@ -32,4 +35,4 @@ export const store = configureStore({
   },
 });
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);

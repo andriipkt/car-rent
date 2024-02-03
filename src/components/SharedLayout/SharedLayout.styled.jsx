@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Header = styled.header`
   display: flex;
@@ -7,7 +7,6 @@ export const Header = styled.header`
   justify-content: space-between;
   gap: 12px;
   padding: 8px 0;
-  margin-bottom: 16px;
   border-bottom: 1px solid black;
 
   > nav {
@@ -19,6 +18,10 @@ export const Header = styled.header`
 export const LogoWrapper = styled.div`
   display: flex;
   gap: 6px;
+`;
+
+export const Section = styled.section`
+  padding: 80px 0;
 `;
 
 export const Container = styled.div`

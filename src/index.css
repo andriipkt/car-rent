@@ -1,5 +1,9 @@
-@import "modern-normalize";
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap");
+@import 'modern-normalize';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
+
+* {
+  scroll-behavior: smooth;
+}
 
 :root {
   --main-color: #3470ff;
@@ -17,7 +21,7 @@
 }
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-style: normal;
@@ -30,7 +34,7 @@ body {
 }
 
 code {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -72,3 +76,7 @@ button {
   cursor: pointer;
   border: none;
 }
+
+/* .button-up {
+  outline: 1px solid red;
+} */
