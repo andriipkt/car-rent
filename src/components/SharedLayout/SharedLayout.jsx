@@ -1,5 +1,4 @@
 import { Link, Outlet } from 'react-router-dom';
-import logo from '../../assets/car-logo.svg';
 import { Suspense } from 'react';
 import {
   Container,
@@ -9,6 +8,8 @@ import {
   StyledLink,
 } from './SharedLayout.styled';
 import ToTopBtn from 'components/ToTopBtn/ToTopBtn';
+import { CarLogo } from 'components/Icons/Icons';
+import { TailSpin } from 'react-loader-spinner';
 
 const SharedLayout = () => {
   return (
@@ -16,25 +17,30 @@ const SharedLayout = () => {
       <Header>
         <Link to="/">
           <LogoWrapper>
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: '24px', height: '24px' }}
-            />
+            <CarLogo />
             <span>Car Rent</span>
           </LogoWrapper>
         </Link>
 
         <nav>
           <StyledLink to={'/'}>Home</StyledLink>
-          <StyledLink to={'/catalog'}>catalog</StyledLink>
-          <StyledLink to={'/favorites'}>favorites</StyledLink>
+          <StyledLink to={'/catalog'}>Catalog</StyledLink>
+          <StyledLink to={'/favorites'}>Favorites</StyledLink>
         </nav>
       </Header>
 
       <Section>
         <Container>
-          <Suspense fallback={<div>Loading page...</div>}>
+          <Suspense
+            fallback={
+              <TailSpin
+                color="#3470ff"
+                width={50}
+                height={50}
+                wrapperStyle={{ marginTop: '75px', justifyContent: 'center' }}
+              />
+            }
+          >
             <Outlet />
           </Suspense>
         </Container>

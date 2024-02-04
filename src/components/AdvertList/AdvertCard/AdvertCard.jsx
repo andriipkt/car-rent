@@ -5,15 +5,18 @@ import {
   Picture,
   PictureWrapper,
   FavIconWrapper,
-  CardInfo,
   CardInfoWrapper,
 } from './AdvertCard.styled';
 import { FavoriteIcon } from '../../Icons/Icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, deleteFavorite } from '../../../redux/favorites/slice';
 import { selectFavorites } from '../../../redux/favorites/selectors';
+import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
+import { Tag, TagsWrapper } from 'components/Modal/Modal.styled';
 
 const AdvertCard = ({ advertItem }) => {
+  const [showModal, setShowModal] = useState(false);
   const {
     make,
     model,
@@ -54,35 +57,41 @@ const AdvertCard = ({ advertItem }) => {
     }
   };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <CardWrapper>
-      <PictureWrapper>
-        <Picture src={img} loading="lazy" alt={description} />
-        <FavIconWrapper onClick={() => handleOnAddFavorite(advertItem)}>
-          <FavoriteIcon color={isFavorite ? '#3470ff' : 'transparent'} />
-        </FavIconWrapper>
-      </PictureWrapper>
+    <>
+      <CardWrapper>
+        <PictureWrapper>
+          <Picture src={img} loading="lazy" alt={description} />
+          <FavIconWrapper onClick={() => handleOnAddFavorite(advertItem)}>
+            <FavoriteIcon color={isFavorite ? '#3470ff' : 'transparent'} />
+          </FavIconWrapper>
+        </PictureWrapper>
 
-      <CardTitleWrapper>
-        <h2>
-          {make} <span>{model}</span>, {year}
-        </h2>
+        <CardTitleWrapper>
+          <h2>
+            {make} <span>{model}</span>, {year}
+          </h2>
 
-        <p>{rentalPrice}</p>
-      </CardTitleWrapper>
+          <p>{rentalPrice}</p>
+        </CardTitleWrapper>
 
-      <CardInfoWrapper>
-        <CardInfo>
-          {/* {tags.map(el => {
-          return <InfoEl key={`${el}.${id}`}>{el}</InfoEl>;
-        })} */}
-          {/* {tags.map(tag => tag.join('U+02758'))} */}
-          {tags.join(' | ')}
-        </CardInfo>
+        <CardInfoWrapper>
+          <TagsWrapper>
+            {tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </TagsWrapper>
 
-        <Button>Learn more</Button>
-      </CardInfoWrapper>
-    </CardWrapper>
+          <Button onClick={toggleModal}>Learn more</Button>
+        </CardInfoWrapper>
+      </CardWrapper>
+
+      {showModal && <Modal toggle={toggleModal} advertItem={advertItem} />}
+    </>
   );
 };
 

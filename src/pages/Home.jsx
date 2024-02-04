@@ -1,5 +1,11 @@
+import AdvantagesList from 'components/AdvantagesList/AdvantagesList';
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <AdvantagesList />
+    </>
+  );
 };
 
 export default Home;

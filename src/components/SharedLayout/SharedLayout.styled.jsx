@@ -5,23 +5,52 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid black;
+
+  position: fixed;
+  z-index: 10;
+
+  width: 100%;
+  padding: 0 44px;
+
+  background-color: white;
+  border-bottom: 1px solid rgba(18, 20, 23, 0.1);
 
   > nav {
     display: flex;
-    gap: 24px;
+    gap: 50px;
   }
 `;
 
 export const LogoWrapper = styled.div`
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 12px;
+
+  > svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  > span {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--black);
+  }
+
+  > svg {
+    fill: var(--black);
+
+    transition: fill var(--transition);
+  }
+
+  &:hover svg {
+    fill: var(--accent-color);
+  }
 `;
 
 export const Section = styled.section`
-  padding: 80px 0;
+  padding: 145px 0 80px 0;
 `;
 
 export const Container = styled.div`
@@ -31,14 +60,30 @@ export const Container = styled.div`
 `;
 
 export const StyledLink = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 20px 10px;
+  border-radius: 12px;
   text-decoration: none;
   color: black;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color var(--transition);
 
-  &.active {
-    color: white;
-    background-color: orangered;
+  position: relative;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+
+  &.active::after {
+    content: '';
+
+    position: absolute;
+    bottom: calc(0% - 1px);
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--accent-color);
   }
 `;

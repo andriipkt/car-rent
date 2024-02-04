@@ -41,16 +41,12 @@ export const Picture = styled.img`
 
 export const FavIconWrapper = styled.span`
   position: absolute;
-  z-index: 10;
   top: 14px;
   right: 14px;
   width: 18px;
   height: 18px;
 
   & svg path {
-    /* fill: transparent; */
-    /* stroke: white; */
-
     transition: fill var(--transition), stroke var(--transition);
   }
 
@@ -76,9 +72,6 @@ export const CardTitleWrapper = styled.div`
     font-weight: 500;
 
     color: var(--black);
-    /* 
-    text-overflow: ellipsis;
-    overflow: hidden; */
 
     > span {
       color: var(--main-color);
@@ -100,73 +93,14 @@ export const CardInfoWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const CardInfo = styled.p`
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-
-  /* height: 36px; */
-  /* overflow-y: hidden; */
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  /* text-overflow: ellipsis; */
-
-  /* margin-bottom: 28px; */
-
-  color: var(--secondary-text-color);
-  font-size: 12px;
-
-  /* color: var(--secondary-text-color);
-  font-size: 12px; */
-
-  &:not(:last-child)::after {
-    content: '';
-    display: block;
-
-    margin: 0 6px;
-
-    width: 1px;
-    height: 90%;
-    background-color: rgba(18, 20, 23, 0.1);
-  }
-`;
-
-// export const InfoEl = styled.p`
-//   display: inline-flex;
-//   display: inline-block;
-//   align-items: center;
-//   text-size-adjust: 50%;
-//   tab-size: 2;
-
-//   color: var(--secondary-text-color);
-//   font-size: 12px;
-
-//   &:not(:last-child)::after {
-//     content: '';
-//     display: inline-block;
-
-//     margin: 0 6px;
-
-//     width: 1px;
-//     height: 90%;
-//     background-color: rgba(18, 20, 23, 0.1);
-//   }
-
-//   > p {
-//     color: var(--secondary-text-color);
-//     font-size: 12px;
-//   }
-// `;
-
 export const Button = styled.button`
   color: white;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.42;
 
-  width: 100%;
+  width: ${props => props.$width || '100%'};
+  height: ${props => props.$height || 'auto'};
   padding-top: 12px;
   padding-bottom: 12px;
 

@@ -11,19 +11,24 @@ const AdvertList = ({ page }) => {
   const adverts = useSelector(selectAdverts);
   const isLoading = useSelector(selectIsLoading);
   const { favorites } = useSelector(selectFavorites);
-  console.log('page', page);
 
   const advertsToRender = page === 'catalog' ? adverts : favorites;
 
   return (
     <>
-      <div>AdvertList</div>
-
-      <AdvertCardsWrapper>
-        {advertsToRender.map(advert => (
-          <AdvertCard key={advert.id} advertItem={advert} />
-        ))}
-      </AdvertCardsWrapper>
+      {advertsToRender.length !== 0 ? (
+        <AdvertCardsWrapper>
+          {advertsToRender.map(advert => (
+            <AdvertCard key={advert.id} advertItem={advert} />
+          ))}
+        </AdvertCardsWrapper>
+      ) : (
+        page !== 'catalog' && (
+          <h2 style={{ fontSize: '28px', marginBottom: '43vh' }}>
+            No favorites added yet
+          </h2>
+        )
+      )}
 
       {advertsToRender.length % 12 === 0 &&
         (isLoading ? (

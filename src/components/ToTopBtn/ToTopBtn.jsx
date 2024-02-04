@@ -30,11 +30,7 @@ const ToTopBtn = () => {
   return (
     <>
       {showToTopBtn && (
-        <ToTopArrowBtn
-          className="button-up"
-          onClick={scrollUp}
-          $showBtn={window.scrollY > 500}
-        >
+        <ToTopArrowBtn onClick={scrollUp} $showBtn={window.scrollY > 500}>
           <ToTopArrowIcon />
         </ToTopArrowBtn>
       )}

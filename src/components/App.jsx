@@ -14,7 +14,7 @@ function App() {
   const page = useSelector(selectPage);
 
   useEffect(() => {
-    dispatch(getAdverts(page));
+    dispatch(getAdverts({ page }));
   }, [dispatch, page]);
 
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
       </Route>
 
-      <Route path="*" element={<div>bebra</div>} />
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 }

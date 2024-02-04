@@ -77,6 +77,35 @@ button {
   border: none;
 }
 
-/* .button-up {
-  outline: 1px solid red;
-} */
+.car-select {
+  width: 224px;
+
+  height: 48px;
+}
+
+.css-13cymwt-control {
+  height: 48px !important;
+  background-color: var(--light-background) !important;
+  border: none !important;
+  border-radius: 14px !important;
+}
+.css-1fdsijx-ValueContainer {
+  padding-left: 20px !important;
+}
+.css-1jqq78o-placeholder {
+  font-weight: 500;
+  font-size: 18;
+  line-height: 1.11;
+
+  color: var(--black) !important;
+}
+.css-1u9des2-indicatorSeparator {
+  display: none;
+}
+
+.css-t3ipsp-control {
+  height: 48px !important;
+  background-color: var(--light-background) !important;
+  border: none !important;
+  border-radius: 14px !important;
+}
