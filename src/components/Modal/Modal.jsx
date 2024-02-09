@@ -13,6 +13,7 @@ import {
 } from './Modal.styled';
 import { Button } from 'components/AdvertList/AdvertCard/AdvertCard.styled';
 import { CloseIcon } from 'components/Icons/Icons';
+import { formatNumberWithCommas } from 'helpers/formatNumberWithCommas';
 
 const Modal = ({ toggle, advertItem }) => {
   const {
@@ -32,7 +33,6 @@ const Modal = ({ toggle, advertItem }) => {
     rentalConditions,
     mileage,
   } = advertItem;
-  console.log('advertItem', advertItem);
 
   const addressInfo = address.split(' ').map(word => word.replace(',', ''));
   const city = addressInfo.slice(-2)[0];
@@ -120,7 +120,7 @@ const Modal = ({ toggle, advertItem }) => {
             <RentalConditionItem>{rentalConditionsArr[2]}</RentalConditionItem>
 
             <RentalConditionItem>
-              Mileage: <span>{mileage}</span>
+              Mileage: <span>{formatNumberWithCommas(parseInt(mileage))}</span>
             </RentalConditionItem>
 
             <RentalConditionItem>
@@ -129,7 +129,9 @@ const Modal = ({ toggle, advertItem }) => {
           </RentalConditionList>
         </div>
 
-        <Button $width={'168px'}>Rental Car</Button>
+        <Button $width={'168px'}>
+          <a href="tel:+380730000000">Rental Car</a>
+        </Button>
       </ModalWindow>
     </Backdrop>,
     document.querySelector('#popup-root')

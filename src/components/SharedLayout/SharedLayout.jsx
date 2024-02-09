@@ -29,22 +29,24 @@ const SharedLayout = () => {
         </nav>
       </Header>
 
-      <Section>
-        <Container>
-          <Suspense
-            fallback={
-              <TailSpin
-                color="#3470ff"
-                width={50}
-                height={50}
-                wrapperStyle={{ marginTop: '75px', justifyContent: 'center' }}
-              />
-            }
-          >
-            <Outlet />
-          </Suspense>
-        </Container>
-      </Section>
+      <main>
+        <Section>
+          <Container>
+            <Suspense
+              fallback={
+                <TailSpin
+                  color="#3470ff"
+                  width={50}
+                  height={50}
+                  wrapperStyle={{ marginTop: '75px', justifyContent: 'center' }}
+                />
+              }
+            >
+              <Outlet />
+            </Suspense>
+          </Container>
+        </Section>
+      </main>
 
       <ToTopBtn />
     </>

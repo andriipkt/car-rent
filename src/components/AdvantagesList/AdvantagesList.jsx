@@ -6,7 +6,6 @@ import {
   ListItem,
   ListWrapper,
   HeroCar,
-  HeroTitleWrapper,
 } from './AdvantagesList.styled';
 import HeroImage from '../../assets/main-car.9b30faa59387879fa060.png';
 import backgroundImg from '../../assets/pngtree-city-line-sketch-png-image_6102066.png';
@@ -14,15 +13,15 @@ import { Link } from 'react-router-dom';
 
 const AdvantagesList = () => {
   return (
-    <div>
+    <>
       <Hero>
-        <HeroTitleWrapper>
-          <h2>Discover the Benefits of Our Car Renting App</h2>
+        <div>
+          <h1>Discover the Benefits of Our Car Renting App</h1>
 
           <Link to="/catalog">
             <Button $width={'260px'}>Browse Catalog</Button>
           </Link>
-        </HeroTitleWrapper>
+        </div>
 
         <HeroPictureWrapper>
           <HeroBackground src={backgroundImg} alt="bacground" />
@@ -90,7 +89,7 @@ const AdvantagesList = () => {
           </p>
         </ListItem>
       </ListWrapper>
-    </div>
+    </>
   );
 };
 

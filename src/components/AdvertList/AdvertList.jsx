@@ -22,12 +22,10 @@ const AdvertList = ({ page }) => {
             <AdvertCard key={advert.id} advertItem={advert} />
           ))}
         </AdvertCardsWrapper>
+      ) : page === 'favorites' ? (
+        <h2 style={{ fontSize: '28px' }}>No favorites added yet</h2>
       ) : (
-        page !== 'catalog' && (
-          <h2 style={{ fontSize: '28px', marginBottom: '43vh' }}>
-            No favorites added yet
-          </h2>
-        )
+        !isLoading && <h2 style={{ fontSize: '28px' }}>No car was found</h2>
       )}
 
       {advertsToRender.length % 12 === 0 &&

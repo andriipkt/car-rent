@@ -17,8 +17,12 @@
   "Audi",
   "BMW",
   "Chevrolet",
-  "Mercedes-Benz",
   "Chrysler",
   "Kia",
-  "Land"
+  "Land",
+  "Toyota",
+  "Honda",
+  "Ford",
+  "Lexus",
+  "Tesla"
 ]

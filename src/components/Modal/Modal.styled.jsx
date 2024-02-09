@@ -55,6 +55,7 @@ export const Picture = styled.img`
 `;
 
 export const CloseIconWrapper = styled.span`
+  cursor: pointer;
   position: absolute;
   top: 16px;
   right: 16px;

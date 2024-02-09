@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdverts } from '../redux/adverts/operations';
+import { getAdverts, getAllAdverts } from '../redux/adverts/operations';
 import { selectPage } from '../redux/adverts/selectors';
 
 const Home = lazy(() => import('../pages/Home'));
@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAdverts({ page }));
+    dispatch(getAllAdverts());
   }, [dispatch, page]);
 
   return (
@@ -25,9 +26,9 @@ function App() {
         <Route path="/catalog" element={<Catalog />} />
 
         <Route path="/favorites" element={<Favorites />} />
-      </Route>
 
-      <Route path="*" element={<Home />} />
+        <Route path="*" element={<Home />} />
+      </Route>
     </Routes>
   );
 }

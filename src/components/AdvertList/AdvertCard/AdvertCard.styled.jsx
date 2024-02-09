@@ -107,9 +107,19 @@ export const Button = styled.button`
   background-color: var(--main-color);
   border-radius: 12px;
 
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), color var(--transition);
 
   &:hover {
     background-color: var(--accent-color);
+  }
+
+  > a {
+    color: white;
+  }
+
+  &[disabled] {
+    color: var(--black);
+    background-color: #d3d3d3;
+    cursor: default;
   }
 `;

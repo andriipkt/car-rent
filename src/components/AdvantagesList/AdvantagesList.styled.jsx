@@ -30,7 +30,7 @@ export const Hero = styled.div`
 
   margin-bottom: 140px;
 
-  & h2 {
+  & h1 {
     font-size: 28px;
     font-weight: 400;
     margin-bottom: 26px;
@@ -42,8 +42,6 @@ export const Hero = styled.div`
     width: 300px;
   }
 `;
-
-export const HeroTitleWrapper = styled.div``;
 
 export const HeroPictureWrapper = styled.div`
   position: relative;

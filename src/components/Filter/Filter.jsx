@@ -9,43 +9,49 @@ import {
   carMileageFilter,
   priceFilter,
 } from '../../redux/filter/slice';
+import { resetFilters, setFilteredAdverts } from '../../redux/adverts/slice';
+import { getAdverts } from '../../redux/adverts/operations';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const { carMileage } = useSelector(filter);
+  const { carBrand, price, carMileage } = useSelector(filter);
 
   const carOptions = options.map(option => {
     return { value: option, label: option };
   });
 
   let priceOptions = [];
-  for (let i = 10; i < 150; i += 10) {
+  for (let i = 10; i <= 300; i += 10) {
     priceOptions.push({ value: i, label: i.toString() });
   }
 
-  const handleFilter = event => {
+  const handleCarMileageFilter = event => {
     const { name, value } = event.target;
 
-    switch (name) {
-      case 'from':
-        dispatch(carMileageFilter({ ...carMileage, from: value }));
-        break;
+    dispatch(carMileageFilter({ ...carMileage, [name]: value }));
+  };
 
-      case 'to':
-        dispatch(carMileageFilter({ ...carMileage, to: value }));
-        break;
-
-      default:
-        console.error('Invalid input name');
-    }
+  const handleCarFilter = event => {
+    dispatch(carBrandFilter(event.value));
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
+
+    dispatch(setFilteredAdverts({ carBrand, price, carMileage }));
+  };
+
+  const handleReset = () => {
+    dispatch(resetFilters());
+    dispatch(getAdverts({}));
+
+    dispatch(carBrandFilter(''));
+    dispatch(priceFilter(''));
+    dispatch(carMileageFilter({ from: '', to: '' }));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} onReset={handleReset}>
       <label>
         Car brand
         <Select
@@ -53,7 +59,8 @@ const Filter = () => {
           options={carOptions}
           isSearchable={true}
           placeholder={'Enter the text'}
-          onChange={car => dispatch(carBrandFilter(car.value))}
+          value={carBrand && { value: carBrand, label: carBrand }}
+          onChange={handleCarFilter}
         />
       </label>
       <label>
@@ -63,31 +70,48 @@ const Filter = () => {
           options={priceOptions}
           isSearchable={true}
           placeholder={'To $'}
+          value={price && { value: price, label: price }}
           onChange={price => dispatch(priceFilter(price.value))}
         />
       </label>
-      <label>
-        Сar mileage / km
-        <InputWrapper>
+
+      <InputWrapper>
+        <label>
+          Сar mileage / km
           <input
             type="number"
             name="from"
             placeholder="From"
-            onChange={handleFilter}
+            onChange={handleCarMileageFilter}
             value={carMileage.from}
           />
+        </label>
+        <label>
           <input
             type="number"
             name="to"
             placeholder="To"
-            onChange={handleFilter}
+            onChange={handleCarMileageFilter}
             value={carMileage.to}
           />
-        </InputWrapper>
-      </label>
+        </label>
+      </InputWrapper>
 
-      <Button type="submit" $width={'136px'} $height={'48px'}>
+      <Button
+        type="submit"
+        disabled={!carBrand && !price && !carMileage.from && !carMileage.to}
+        $width={'136px'}
+        $height={'48px'}
+      >
         Search
+      </Button>
+      <Button
+        type="reset"
+        disabled={!carBrand && !price && !carMileage.from && !carMileage.to}
+        $width={'136px'}
+        $height={'48px'}
+      >
+        Reset
       </Button>
     </Form>
   );

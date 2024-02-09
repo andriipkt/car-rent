@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAdverts } from './operations';
+import { getAdverts, getAllAdverts } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -11,6 +11,7 @@ const handleRejected = (state, { payload }) => {
 };
 
 const initialState = {
+  fullListAdverts: [],
   adverts: [],
   isLoading: false,
   error: null,
@@ -26,7 +27,37 @@ const advertsSlice = createSlice({
     },
 
     setFilteredAdverts: (state, { payload }) => {
-      state.adverts = payload;
+      const { carBrand, price, carMileage } = payload;
+
+      let filteredAdverts = state.fullListAdverts;
+
+      if (carBrand) {
+        filteredAdverts = filteredAdverts.filter(advert =>
+          advert.make.toLowerCase().includes(carBrand.toLowerCase())
+        );
+      }
+
+      if (price) {
+        filteredAdverts = filteredAdverts.filter(
+          advert => parseInt(advert.rentalPrice.slice(1)) <= price
+        );
+      }
+
+      if (carMileage.from || carMileage.to) {
+        filteredAdverts = filteredAdverts.filter(
+          advert =>
+            (!carMileage.from ||
+              parseInt(advert.mileage) >= parseInt(carMileage.from)) &&
+            (!carMileage.to ||
+              parseInt(advert.mileage) <= parseInt(carMileage.to))
+        );
+      }
+
+      state.adverts = filteredAdverts;
+    },
+
+    resetFilters: (state, _) => {
+      state.adverts = [];
     },
   },
   extraReducers: builder => {
@@ -38,8 +69,16 @@ const advertsSlice = createSlice({
         state.adverts = [...state.adverts, ...payload];
       })
       .addCase(getAdverts.rejected, handleRejected);
+
+    builder
+      .addCase(getAllAdverts.pending, handlePending)
+      .addCase(getAllAdverts.fulfilled, (state, { payload }) => {
+        state.fullListAdverts = payload;
+      })
+      .addCase(getAllAdverts.rejected, handleRejected);
   },
 });
 
-export const { setPage, setFilteredAdverts } = advertsSlice.actions;
+export const { setPage, setFilteredAdverts, resetFilters } =
+  advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

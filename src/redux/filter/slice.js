@@ -9,8 +9,6 @@ const filterSlice = createSlice({
   },
   reducers: {
     carBrandFilter: (state, { payload }) => {
-      console.log('payload', payload);
-
       state.carBrand = payload;
     },
 

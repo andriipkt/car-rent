@@ -5,7 +5,7 @@ export const Form = styled.form`
   gap: 14px;
   align-items: flex-end;
 
-  > label {
+  & label {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -18,7 +18,10 @@ export const Form = styled.form`
 `;
 
 export const InputWrapper = styled.div`
-  > input {
+  display: flex;
+  align-items: flex-end;
+
+  & input {
     width: 160px;
     height: 48px;
     padding-left: 24px;
@@ -27,21 +30,20 @@ export const InputWrapper = styled.div`
     border: none;
   }
 
-  > input[name='from'] {
+  & input[name='from'] {
     border-radius: 14px 0 0 14px;
     border-right: 1px solid rgba(138, 138, 137, 0.2);
   }
 
-  > input[name='to'] {
+  & input[name='to'] {
     border-radius: 0 14px 14px 0;
   }
 
-  > input::placeholder {
-    /* padding-left: 24px; */
+  & input::placeholder {
     color: var(--black);
   }
 
-  > input:focus {
+  & input:focus {
     outline: none;
     border: 1px solid var(--main-color);
   }
