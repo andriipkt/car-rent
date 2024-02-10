@@ -10,8 +10,8 @@ import {
   RentalConditionList,
   Tag,
   TagsWrapper,
+  TelLink,
 } from './Modal.styled';
-import { Button } from 'components/AdvertList/AdvertCard/AdvertCard.styled';
 import { CloseIcon } from 'components/Icons/Icons';
 import { formatNumberWithCommas } from 'helpers/formatNumberWithCommas';
 
@@ -129,9 +129,7 @@ const Modal = ({ toggle, advertItem }) => {
           </RentalConditionList>
         </div>
 
-        <Button $width={'168px'}>
-          <a href="tel:+380730000000">Rental Car</a>
-        </Button>
+        <TelLink href="tel:+380730000000">Rental Car</TelLink>
       </ModalWindow>
     </Backdrop>,
     document.querySelector('#popup-root')

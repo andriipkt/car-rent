@@ -113,3 +113,25 @@ export const RentalConditionItem = styled.li`
     color: var(--main-color);
   }
 `;
+
+export const TelLink = styled.a`
+  text-align: center;
+  display: block;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.42;
+
+  width: 168px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  background-color: var(--main-color);
+  border-radius: 12px;
+
+  transition: background-color var(--transition), color var(--transition);
+
+  &:hover {
+    background-color: var(--accent-color);
+  }
+`;

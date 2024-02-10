@@ -113,10 +113,6 @@ export const Button = styled.button`
     background-color: var(--accent-color);
   }
 
-  > a {
-    color: white;
-  }
-
   &[disabled] {
     color: var(--black);
     background-color: #d3d3d3;

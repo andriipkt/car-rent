@@ -35,7 +35,7 @@ const Filter = () => {
     dispatch(carBrandFilter(event.value));
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
     dispatch(setFilteredAdverts({ carBrand, price, carMileage }));
