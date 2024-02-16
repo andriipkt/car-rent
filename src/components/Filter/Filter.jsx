@@ -9,7 +9,11 @@ import {
   carMileageFilter,
   priceFilter,
 } from '../../redux/filter/slice';
-import { resetFilters, setFilteredAdverts } from '../../redux/adverts/slice';
+import {
+  resetFilters,
+  resetPage,
+  setFilteredAdverts,
+} from '../../redux/adverts/slice';
 import { getAdverts } from '../../redux/adverts/operations';
 
 const Filter = () => {
@@ -48,6 +52,7 @@ const Filter = () => {
     dispatch(carBrandFilter(''));
     dispatch(priceFilter(''));
     dispatch(carMileageFilter({ from: '', to: '' }));
+    dispatch(resetPage());
   };
 
   return (

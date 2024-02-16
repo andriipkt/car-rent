@@ -15,8 +15,11 @@ function App() {
 
   useEffect(() => {
     dispatch(getAdverts({ page }));
-    dispatch(getAllAdverts());
   }, [dispatch, page]);
+
+  useEffect(() => {
+    dispatch(getAllAdverts());
+  }, [dispatch]);
 
   return (
     <Routes>

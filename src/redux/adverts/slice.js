@@ -25,6 +25,9 @@ const advertsSlice = createSlice({
     setPage: (state, _) => {
       state.page += 1;
     },
+    resetPage: (state, _) => {
+      state.page = 1;
+    },
 
     setFilteredAdverts: (state, { payload }) => {
       const { carBrand, price, carMileage } = payload;
@@ -79,6 +82,6 @@ const advertsSlice = createSlice({
   },
 });
 
-export const { setPage, setFilteredAdverts, resetFilters } =
+export const { setPage, resetPage, setFilteredAdverts, resetFilters } =
   advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;
